@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Converter</title>
+    <script src="angular/angular.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/converter.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body ng-app="myApp">
+    <header>
+        <div>
+            <h3 style="margin: auto; margin-top: 2%;margin-bottom: 2%; text-align: center; font-size: 50px; font-style: inherit;">Unit Converter</h3>
+        </div>
+    </header>
+    <section>
+        <div ng-controller="myCtrl">
+            <div class="container-fluid" style="margin-left: auto;margin-right: auto;width: 100%">
+                <div class="card text-center w-50" style="margin: auto;">
+                    <div class="card-header">
+                        <h3>Select a Unit:</h3>
+                        <select ng-model="selectedUnit" ng-options="x for x in units" ng-change="mySelectUnit(selectedUnit)" style="width: 50%;margin-bottom: 20px;">
+                        </select>
+                    </div>
+                    <div class="card-body" style="margin: auto;">
+                        <div class="row">
+                            <div class="col-sm-5 mb-4">{{param1.name}}</div> <!--displaying the selected units-->
+                            <div class="col-sm-2 mb-4">TO</div>
+                            <div class="col-sm-5 mb-4">{{param2.name}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <input ng-model="num1" type="number" ng-change="myCalculation(param1.factor,param2.factor,num1,1)"> <!-- input for first field-->
+                                    </div>
+                                    <div class="card-footer">
+                                        <h6>Select Convert from:</h6>
+                                        <select ng-model="param1" ng-options="x.name for x in param" style="width: 90%;" ng-change="myCalculation(param1.factor,param2.factor,num2,2)">
+                                            <!-- ng-change is used to call function implicitly -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card" style="width: 15rem;">
+                                    <div class="card-body">
+                                        <input ng-model="num2" type="number" ng-change="myCalculation(param1.factor,param2.factor,num2,2)"> <!-- input for second field-->
+                                    </div>
+                                    <div class="card-footer">
+                                        <h6>Select Convert to:</h6>
+                                        <select ng-model="param2" ng-options="x.name for x in param" style="width: 90%;" ng-change="myCalculation(param1.factor,param2.factor,num1,1)">
+                                            <!-- ng-options is used to fetch the dictionary -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
